@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'reg-confirm': {
         groupId: 'ig-reg-confirm',
         rule: v => {
-          const pw = document.getElementById('reg-password')?.value;
+          const pw = document.getElementById('password')?.value;
           return v === pw && v.length >= 8;
         },
         msg: 'Konfirmasi password tidak cocok'
