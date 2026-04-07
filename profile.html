@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dashboard akun One Store. Kelola pesanan, wishlist, dan informasi profil kamu." />
+  <title>Profile — One Store</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310B981'/><text y='22' x='7' font-size='18' font-weight='900' fill='white' font-family='sans-serif'>O</text></svg>">
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+</head>
+<body>
+
+<div id="toast-container"></div>
+<div class="overlay" id="overlay"></div>
+
+<!-- Mobile Drawer -->
+<nav class="mobile-drawer">
+  <div class="drawer-header">
+    <a href="index.html" class="navbar-logo"><div class="logo-icon">O</div><span class="logo-text">One <span>Store</span></span></a>
+    <button class="drawer-close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+  </div>
+  <div class="drawer-nav">
+    <a href="index.html" class="drawer-nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>Home</a>
+    <a href="shop.html" class="drawer-nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line></svg>Shop</a>
+    <a href="cart.html" class="drawer-nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>Keranjang</a>
+  </div>
+  <div class="drawer-footer"><button onclick="doLogout()" class="btn btn-ghost" style="width:100%;">Keluar</button></div>
+</nav>
+
+<!-- Search Overlay -->
+<div class="search-overlay" id="search-overlay">
+  <div class="search-overlay-inner">
+    <div class="search-input-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" class="search-input" placeholder="Cari produk..." autocomplete="off" />
+      <div class="search-suggestions"></div>
+    </div>
+    <button class="search-close-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="navbar-logo"><div class="logo-icon">O</div><span class="logo-text">One <span>Store</span></span></a>
+    <nav class="navbar-menu">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="shop.html" class="nav-link">Shop</a>
+      <a href="shop.html?cat=men" class="nav-link">Pria</a>
+      <a href="shop.html?cat=women" class="nav-link">Wanita</a>
+    </nav>
+    <div class="navbar-actions">
+      <div class="navbar-search"><button class="search-toggle-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></div>
+      <a href="cart.html" class="nav-action-btn nav-cart-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><span class="badge-dot cart-badge">0</span></a>
+      <button class="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main class="page-body profile-page" id="page-main">
+  <div class="container">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb" style="margin-bottom:var(--space-6);">
+      <a href="index.html">Home</a><span class="breadcrumb-sep">›</span>
+      <span>Profile</span>
+    </div>
+
+    <div class="profile-layout">
+
+      <!-- ─── SIDEBAR ─────────────────────────── -->
+      <aside class="profile-sidebar">
+
+        <!-- User Card -->
+        <div class="user-card">
+          <div class="user-avatar" id="user-avatar" title="Klik untuk ubah foto">
+            <span id="user-avatar-letter">U</span>
+            <div class="user-avatar-edit">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            </div>
+          </div>
+          <div class="user-name" id="user-display-name">—</div>
+          <div class="user-email" id="user-display-email">—</div>
+          <div class="user-badge">⭐ Premium Member</div>
+          <div class="user-stats">
+            <div class="user-stat" onclick="switchProfileTab('orders')">
+              <span class="user-stat-num" id="stat-orders">0</span>
+              <span class="user-stat-label">Pesanan</span>
+            </div>
+            <div class="user-stat" onclick="switchProfileTab('wishlist')">
+              <span class="user-stat-num" id="stat-wishlist">0</span>
+              <span class="user-stat-label">Wishlist</span>
+            </div>
+            <div class="user-stat">
+              <span class="user-stat-num">0</span>
+              <span class="user-stat-label">Review</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Nav -->
+        <nav class="profile-nav">
+          <button class="profile-nav-item active" onclick="switchProfileTab('overview')" data-tab="overview">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            Dashboard
+          </button>
+          <button class="profile-nav-item" onclick="switchProfileTab('orders')" data-tab="orders">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            Pesanan
+            <span class="profile-nav-badge" id="orders-badge">3</span>
+          </button>
+          <button class="profile-nav-item" onclick="switchProfileTab('wishlist')" data-tab="wishlist">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            Wishlist
+          </button>
+          <button class="profile-nav-item" onclick="switchProfileTab('addresses')" data-tab="addresses">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Alamat
+          </button>
+          <button class="profile-nav-item" onclick="switchProfileTab('settings')" data-tab="settings">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            Pengaturan
+          </button>
+          <button class="profile-nav-item danger" onclick="doLogout()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            Keluar
+          </button>
+        </nav>
+
+      </aside>
+
+      <!-- ─── MAIN CONTENT ────────────────────── -->
+      <div class="profile-content">
+
+        <!-- ── OVERVIEW TAB ──────────────────── -->
+        <div class="profile-tab-pane active" id="pane-overview">
+          <!-- Stats -->
+          <div class="overview-stats-grid">
+            <div class="overview-stat-card">
+              <div class="overview-stat-icon stat-icon-blue">📦</div>
+              <div class="overview-stat-info">
+                <div class="overview-stat-num" id="ov-orders">3</div>
+                <div class="overview-stat-label">Total Pesanan</div>
+              </div>
+            </div>
+            <div class="overview-stat-card">
+              <div class="overview-stat-icon stat-icon-green">❤️</div>
+              <div class="overview-stat-info">
+                <div class="overview-stat-num" id="ov-wishlist">0</div>
+                <div class="overview-stat-label">Wishlist</div>
+              </div>
+            </div>
+            <div class="overview-stat-card">
+              <div class="overview-stat-icon stat-icon-amber">💰</div>
+              <div class="overview-stat-info">
+                <div class="overview-stat-num" id="ov-spent">—</div>
+                <div class="overview-stat-label">Total Belanja</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Orders -->
+          <div class="profile-section-card">
+            <div class="profile-section-header">
+              <h2 class="profile-section-title">📋 Pesanan Terbaru</h2>
+              <button class="btn btn-ghost btn-sm" onclick="switchProfileTab('orders')">Lihat Semua</button>
+            </div>
+            <div id="recent-orders-list"></div>
+          </div>
+
+          <!-- Wishlist Preview -->
+          <div class="profile-section-card">
+            <div class="profile-section-header">
+              <h2 class="profile-section-title">❤️ Wishlist</h2>
+              <button class="btn btn-ghost btn-sm" onclick="switchProfileTab('wishlist')">Lihat Semua</button>
+            </div>
+            <div id="wishlist-preview-grid" class="wishlist-grid"></div>
+            <div id="wishlist-empty" class="empty-state" style="display:none; padding:var(--space-8) 0;">
+              <div class="empty-state-icon">❤️</div>
+              <h3 class="empty-state-title">Wishlist Kosong</h3>
+              <p class="empty-state-text">Tandai produk favoritmu dengan menekan ikon ❤️</p>
+              <a href="shop.html" class="btn btn-primary btn-sm" style="margin-top:var(--space-4);">Jelajahi Produk</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── ORDERS TAB ─────────────────────── -->
+        <div class="profile-tab-pane" id="pane-orders">
+          <div class="profile-section-card">
+            <div class="profile-section-header">
+              <h2 class="profile-section-title">📋 Riwayat Pesanan</h2>
+            </div>
+            <div class="orders-list" id="orders-list"></div>
+          </div>
+        </div>
+
+        <!-- ── WISHLIST TAB ────────────────────── -->
+        <div class="profile-tab-pane" id="pane-wishlist">
+          <div class="profile-section-card">
+            <div class="profile-section-header">
+              <h2 class="profile-section-title">❤️ Produk Favorit</h2>
+              <span id="wishlist-count-text" style="font-size:var(--font-size-sm); color:var(--color-gray-400);">0 produk</span>
+            </div>
+            <div class="wishlist-grid" id="wishlist-full-grid"></div>
+            <div id="wishlist-full-empty" class="empty-state" style="display:none; padding:var(--space-10) 0;">
+              <div class="empty-state-icon">❤️</div>
+              <h3 class="empty-state-title">Wishlist Kosong</h3>
+              <p class="empty-state-text">Klik ikon ❤️ pada produk untuk menambahkannya ke wishlist.</p>
+              <a href="shop.html" class="btn btn-primary" style="margin-top:var(--space-4);">Mulai Belanja</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── ADDRESSES TAB ──────────────────── -->
+        <div class="profile-tab-pane" id="pane-addresses">
+          <div class="profile-section-card">
+            <div class="profile-section-header">
+              <h2 class="profile-section-title">📍 Alamat Pengiriman</h2>
+            </div>
+            <div class="addresses-grid">
+              <div class="address-card default">
+                <span class="address-card-badge">Utama</span>
+                <div class="address-name">Rumah</div>
+                <div class="address-text" id="addr-main-text">Jl. Sudirman No. 123, Kebayoran Baru, Jakarta Selatan 12190, DKI Jakarta</div>
+                <div class="address-actions">
+                  <button class="btn btn-ghost btn-sm" onclick="showToast('Segera Hadir', 'Fitur edit alamat segera hadir', 'info')">Edit</button>
+                </div>
+              </div>
+              <div class="add-address-card" onclick="showToast('Segera Hadir', 'Fitur tambah alamat segera hadir.', 'info')">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                <span style="font-size:var(--font-size-sm); font-weight:600;">Tambah Alamat Baru</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SETTINGS TAB ────────────────────── -->
+        <div class="profile-tab-pane" id="pane-settings">
+          <div class="profile-section-card">
+            <div class="profile-section-header">
+              <h2 class="profile-section-title">⚙️ Informasi Akun</h2>
+            </div>
+            <form class="settings-form" id="settings-form" onsubmit="saveSettings(event)">
+              <div class="form-grid-2-settings">
+                <div class="input-group">
+                  <label class="input-label" for="set-name">Nama Lengkap</label>
+                  <input type="text" id="set-name" class="input-field" />
+                </div>
+                <div class="input-group">
+                  <label class="input-label" for="set-email">Email</label>
+                  <input type="email" id="set-email" class="input-field" />
+                </div>
+              </div>
+              <div class="form-grid-2-settings">
+                <div class="input-group">
+                  <label class="input-label" for="set-phone">No. Handphone</label>
+                  <input type="tel" id="set-phone" class="input-field" placeholder="08xxxxxxxxxx" />
+                </div>
+                <div class="input-group">
+                  <label class="input-label" for="set-birthday">Tanggal Lahir</label>
+                  <input type="date" id="set-birthday" class="input-field" />
+                </div>
+              </div>
+              <div class="input-group">
+                <label class="input-label" for="set-gender">Jenis Kelamin</label>
+                <select id="set-gender" class="input-field select-field">
+                  <option value="">Pilih...</option>
+                  <option value="m">Laki-laki</option>
+                  <option value="f">Perempuan</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary" style="align-self:flex-start;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                Simpan Perubahan
+              </button>
+            </form>
+          </div>
+
+          <!-- Change Password -->
+          <div class="profile-section-card">
+            <div class="profile-section-header">
+              <h2 class="profile-section-title">🔒 Ganti Password</h2>
+            </div>
+            <form class="settings-form" onsubmit="changePassword(event)">
+              <div class="input-group">
+                <label class="input-label">Password Saat Ini</label>
+                <input type="password" class="input-field" placeholder="Masukkan password lama" />
+              </div>
+              <div class="input-group">
+                <label class="input-label">Password Baru</label>
+                <input type="password" id="set-new-pw" class="input-field" placeholder="Minimal 8 karakter" />
+              </div>
+              <div class="input-group">
+                <label class="input-label">Konfirmasi Password Baru</label>
+                <input type="password" id="set-confirm-pw" class="input-field" placeholder="Ulangi password baru" />
+              </div>
+              <button type="submit" class="btn btn-outline" style="align-self:flex-start;">Ganti Password</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand"><div><a href="index.html" class="footer-logo"><div class="logo-icon">O</div><span class="logo-text">One <span>Store</span></span></a><p class="footer-desc">Fashion terpercaya untuk semua kalangan.</p></div></div>
+      <div class="footer-col"><h4 class="footer-col-title">Shop</h4><ul class="footer-links"><li><a href="shop.html" class="footer-link">Semua</a></li><li><a href="shop.html?cat=men" class="footer-link">Pria</a></li><li><a href="shop.html?cat=women" class="footer-link">Wanita</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Akun</h4><ul class="footer-links"><li><a href="cart.html" class="footer-link">Keranjang</a></li><li><a href="checkout.html" class="footer-link">Checkout</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p class="footer-copyright">&copy; 2024 One Store.</p></div>
+  </div>
+</footer>
+
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>
+/* ─── Sample Orders Data ───────────────────────── */
+const SAMPLE_ORDERS = [
+  {
+    id: '#OS-20241157', date: '1 Apr 2024', status: 'delivered',
+    statusLabel: '✓ Terkirim',
+    items: [{ id: 1 }, { id: 3 }],
+    total: 698000
+  },
+  {
+    id: '#OS-20241089', date: '28 Mar 2024', status: 'shipping',
+    statusLabel: '🚚 Dalam Pengiriman',
+    items: [{ id: 7 }],
+    total: 349000
+  },
+  {
+    id: '#OS-20241022', date: '20 Mar 2024', status: 'processing',
+    statusLabel: '⏳ Diproses',
+    items: [{ id: 12 }, { id: 15 }, { id: 8 }],
+    total: 1250000
+  },
+];
+
+/* ─── Init ─────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  const user = getCurrentUser?.();
+  if (!user) {
+    // Not logged in — redirect to login
+    showToast('Silakan Login', 'Kamu perlu masuk untuk mengakses profil.', 'info');
+    setTimeout(() => window.location.href = 'login.html', 1500);
+    return;
+  }
+
+  // Populate user info
+  const initial = user.name?.charAt(0).toUpperCase() || 'U';
+  document.getElementById('user-avatar-letter').textContent = initial;
+  document.getElementById('user-display-name').textContent  = user.name  || 'Pengguna';
+  document.getElementById('user-display-email').textContent = user.email || '—';
+  document.getElementById('set-name').value  = user.name  || '';
+  document.getElementById('set-email').value = user.email || '';
+
+  // Wishlist stats
+  const wishlist = getWishlist?.() || [];
+  document.getElementById('stat-wishlist').textContent = wishlist.length;
+  document.getElementById('ov-wishlist').textContent   = wishlist.length;
+
+  // Orders count
+  document.getElementById('stat-orders').textContent = SAMPLE_ORDERS.length;
+  document.getElementById('ov-orders').textContent    = SAMPLE_ORDERS.length;
+  document.getElementById('ov-spent').textContent     = formatPrice(SAMPLE_ORDERS.reduce((s,o) => s+o.total, 0));
+
+  // Render
+  renderOrders();
+  renderWishlist();
+
+  // Check hash for deep link
+  const hash = window.location.hash.replace('#', '');
+  if (hash && document.getElementById('pane-' + hash)) {
+    switchProfileTab(hash);
+  }
+});
+
+/* ─── Tab Switching ─────────────────────────────── */
+function switchProfileTab(tab) {
+  document.querySelectorAll('.profile-tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.profile-nav-item').forEach(n => n.classList.remove('active'));
+
+  document.getElementById('pane-' + tab)?.classList.add('active');
+  document.querySelector(`[data-tab="${tab}"]`)?.classList.add('active');
+
+  window.history.replaceState(null, '', '#' + tab);
+}
+
+/* ─── Render Orders ─────────────────────────────── */
+function renderOrders() {
+  const containers = ['recent-orders-list', 'orders-list'];
+
+  containers.forEach(containerId => {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+
+    const limit = containerId === 'recent-orders-list' ? 2 : SAMPLE_ORDERS.length;
+    const orders = SAMPLE_ORDERS.slice(0, limit);
+
+    el.innerHTML = orders.map(order => {
+      const items = order.items.map(i => getProductById(i.id)).filter(Boolean);
+      const previewImgs = items.slice(0, 3).map(p => `
+        <div class="order-item-thumb">
+          <img src="${p.images[0]}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=100&q=60'" />
+        </div>
+      `).join('');
+      const moreCount = items.length - 3;
+
+      return `
+        <div class="order-card">
+          <div class="order-card-header">
+            <div>
+              <span class="order-id">${order.id}</span>
+              <span class="order-date" style="margin-left:var(--space-3);">${order.date}</span>
+            </div>
+            <span class="order-status status-${order.status}">${order.statusLabel}</span>
+          </div>
+          <div class="order-card-body">
+            <div class="order-items-preview">
+              ${previewImgs}
+              ${moreCount > 0 ? `<div class="order-item-more">+${moreCount}</div>` : ''}
+            </div>
+            <div class="order-total-info">
+              <div class="order-total-label">${items.length} produk · Total</div>
+              <div class="order-total-value">${formatPrice(order.total)}</div>
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+  });
+}
+
+/* ─── Render Wishlist ───────────────────────────── */
+function renderWishlist() {
+  const wishlistIds = getWishlist?.() || [];
+  const wishlistProducts = wishlistIds.map(id => getProductById(id)).filter(Boolean);
+
+  // Preview (max 6)
+  const previewGrid = document.getElementById('wishlist-preview-grid');
+  const fullGrid    = document.getElementById('wishlist-full-grid');
+  const emptyMsg    = document.getElementById('wishlist-empty');
+  const fullEmpty   = document.getElementById('wishlist-full-empty');
+  const countText   = document.getElementById('wishlist-count-text');
+
+  if (countText) countText.textContent = `${wishlistProducts.length} produk`;
+
+  if (wishlistProducts.length === 0) {
+    if (previewGrid) previewGrid.style.display = 'none';
+    if (emptyMsg)    emptyMsg.style.display = 'block';
+    if (fullGrid)    fullGrid.style.display = 'none';
+    if (fullEmpty)   fullEmpty.style.display = 'block';
+    return;
+  }
+
+  const html = wishlistProducts.map(p => generateProductCard(p)).join('');
+
+  if (previewGrid) {
+    previewGrid.style.display = 'grid';
+    previewGrid.innerHTML = wishlistProducts.slice(0, 6).map(p => generateProductCard(p)).join('');
+  }
+  if (emptyMsg) emptyMsg.style.display = 'none';
+
+  if (fullGrid) {
+    fullGrid.style.display = 'grid';
+    fullGrid.innerHTML = html;
+  }
+  if (fullEmpty) fullEmpty.style.display = 'none';
+}
+
+/* ─── Save Settings ─────────────────────────────── */
+function saveSettings(e) {
+  e.preventDefault();
+  const name  = document.getElementById('set-name').value.trim();
+  const email = document.getElementById('set-email').value.trim();
+
+  if (!name || !email) {
+    showToast('Lengkapi Data', 'Nama dan email tidak boleh kosong.', 'error');
+    return;
+  }
+
+  const user = getCurrentUser?.() || {};
+  loginUser(email, name);
+
+  document.getElementById('user-display-name').textContent  = name;
+  document.getElementById('user-display-email').textContent = email;
+  document.getElementById('user-avatar-letter').textContent = name.charAt(0).toUpperCase();
+
+  showToast('Tersimpan!', 'Informasi akun berhasil diperbarui.', 'success');
+}
+
+/* ─── Change Password ───────────────────────────── */
+function changePassword(e) {
+  e.preventDefault();
+  const pw1 = document.getElementById('set-new-pw').value;
+  const pw2 = document.getElementById('set-confirm-pw').value;
+
+  if (!pw1 || pw1.length < 8) {
+    showToast('Password Terlalu Pendek', 'Password baru minimal 8 karakter.', 'error');
+    return;
+  }
+  if (pw1 !== pw2) {
+    showToast('Tidak Cocok', 'Konfirmasi password tidak cocok.', 'error');
+    return;
+  }
+  showToast('Password Diperbarui!', 'Password kamu berhasil diganti.', 'success');
+  e.target.reset();
+}
+
+/* ─── Logout ────────────────────────────────────── */
+function doLogout() {
+  if (confirm('Yakin ingin keluar dari akun One Store?')) {
+    logoutUser?.();
+    showToast('Sampai Jumpa!', 'Kamu berhasil keluar.', 'info');
+    setTimeout(() => window.location.href = 'login.html', 1200);
+  }
+}
+</script>
+</body>
+</html>

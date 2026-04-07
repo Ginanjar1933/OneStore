@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="One Store — Toko fashion online terpercaya. Temukan koleksi baju, sepatu, dan aksesori pria, wanita & anak terbaru dengan harga terbaik." />
+  <meta name="keywords" content="toko baju online, fashion pria, fashion wanita, baju anak, sepatu, aksesori, one store" />
+  <title>One Store — Upgrade Your Style</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310B981'/><text y='22' x='7' font-size='18' font-weight='900' fill='white' font-family='sans-serif'>O</text></svg>">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+
+<!-- =====================================================
+     TOAST CONTAINER
+     ===================================================== -->
+<div id="toast-container"></div>
+
+<!-- =====================================================
+     BACK TO TOP
+     ===================================================== -->
+<button id="back-to-top" aria-label="Back to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+<!-- =====================================================
+     OVERLAY (for search & drawer)
+     ===================================================== -->
+<div class="overlay" id="overlay"></div>
+
+<!-- =====================================================
+     MOBILE DRAWER
+     ===================================================== -->
+<nav class="mobile-drawer" aria-label="Mobile navigation">
+  <div class="drawer-header">
+    <a href="index.html" class="navbar-logo">
+      <div class="logo-icon">O</div>
+      <span class="logo-text">One <span>Store</span></span>
+    </a>
+    <button class="drawer-close" aria-label="Close menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-nav">
+    <a href="index.html" class="drawer-nav-link active">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      Home
+    </a>
+    <a href="shop.html" class="drawer-nav-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+      Shop
+    </a>
+    <a href="shop.html?cat=men" class="drawer-nav-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+      Pria
+    </a>
+    <a href="shop.html?cat=women" class="drawer-nav-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+      Wanita
+    </a>
+    <a href="cart.html" class="drawer-nav-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+      Keranjang
+    </a>
+    <a href="profile.html" class="drawer-nav-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      Profile
+    </a>
+  </div>
+  <div class="drawer-footer">
+    <a href="login.html" class="drawer-auth-link btn btn-primary">Masuk / Daftar</a>
+  </div>
+</nav>
+
+<!-- =====================================================
+     SEARCH OVERLAY
+     ===================================================== -->
+<div class="search-overlay" id="search-overlay" role="search">
+  <div class="search-overlay-inner">
+    <div class="search-input-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" class="search-input" id="search-input" placeholder="Cari produk, brand, kategori..." autocomplete="off" aria-label="Search products" />
+      <div class="search-suggestions" id="search-suggestions"></div>
+    </div>
+    <button class="search-close-btn" aria-label="Close search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+<header class="navbar" role="banner">
+  <div class="container navbar-inner">
+    <!-- Logo -->
+    <a href="index.html" class="navbar-logo" aria-label="One Store Home">
+      <div class="logo-icon">O</div>
+      <span class="logo-text">One <span>Store</span></span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="navbar-menu" aria-label="Main navigation">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="shop.html" class="nav-link">Shop</a>
+      <a href="shop.html?cat=men" class="nav-link">Pria</a>
+      <a href="shop.html?cat=women" class="nav-link">Wanita</a>
+      <a href="shop.html?cat=kids" class="nav-link">Anak</a>
+      <a href="shop.html?cat=shoes" class="nav-link">Sepatu</a>
+    </nav>
+
+    <!-- Actions -->
+    <div class="navbar-actions">
+      <!-- Search -->
+      <div class="navbar-search">
+        <button class="search-toggle-btn" id="search-toggle" aria-label="Open search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Wishlist -->
+      <a href="profile.html#wishlist" class="nav-action-btn" aria-label="Wishlist">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+      </a>
+
+      <!-- Cart -->
+      <a href="cart.html" class="nav-action-btn nav-cart-btn" aria-label="Shopping cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span class="badge-dot cart-badge" aria-label="Cart items count">0</span>
+      </a>
+
+      <!-- Login -->
+      <a href="login.html" class="nav-login-btn" id="nav-login-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span class="login-text">Masuk</span>
+      </a>
+
+      <!-- Hamburger -->
+      <button class="hamburger" id="hamburger" aria-label="Open mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- =====================================================
+     MAIN CONTENT
+     ===================================================== -->
+<main class="page-body" id="main-content">
+
+  <!-- ─── HERO SECTION ─────────────────────────────── -->
+  <section class="hero" id="hero" aria-label="Hero banner">
+    <div class="hero-bg">
+      <div class="hero-bg-shape hero-shape-1"></div>
+      <div class="hero-bg-shape hero-shape-2"></div>
+      <div class="hero-bg-shape hero-shape-3"></div>
+    </div>
+    <div class="container hero-inner">
+      <!-- Content -->
+      <div class="hero-content">
+        <span class="hero-tag hero-animate fade-in">✦ New Collection 2024</span>
+        <h1 class="hero-title hero-animate fade-in stagger-2">
+          Upgrade Your<br>
+          <span class="hero-title-accent">Style</span> with<br>
+          One Store
+        </h1>
+        <p class="hero-subtitle hero-animate fade-in stagger-3">
+          Temukan koleksi fashion modern pria &amp; wanita.<br>
+          Kualitas premium, harga terjangkau, pengiriman cepat.
+        </p>
+        <div class="hero-cta hero-animate fade-in stagger-4">
+          <a href="shop.html" class="btn btn-primary btn-xl" id="hero-shop-now">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            Shop Now
+          </a>
+          <a href="#categories" class="btn btn-ghost btn-xl" id="hero-explore">
+            Explore Category
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+        <!-- Stats -->
+        <div class="hero-stats hero-animate fade-in stagger-5">
+          <div class="hero-stat">
+            <span class="hero-stat-num">10K+</span>
+            <span class="hero-stat-label">Produk Fashion</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">50K+</span>
+            <span class="hero-stat-label">Customer Puas</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">4.9★</span>
+            <span class="hero-stat-label">Rating Toko</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Image / Visual -->
+      <div class="hero-visual hero-animate fade-in-right stagger-2">
+        <div class="hero-img-wrap">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=85" alt="Fashion Collection One Store" class="hero-img" />
+          <!-- Floating cards -->
+          <div class="hero-float hero-float-1">
+            <div class="hero-float-icon">🔥</div>
+            <div>
+              <div class="hero-float-title">Best Seller</div>
+              <div class="hero-float-sub">Kemeja Oxford Slim</div>
+            </div>
+          </div>
+          <div class="hero-float hero-float-2">
+            <div class="hero-float-icon">🎉</div>
+            <div>
+              <div class="hero-float-title">Diskon 25%</div>
+              <div class="hero-float-sub">Flash Sale Hari Ini</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ─── TRUST BADGES ──────────────────────────────── -->
+  <section class="trust-badges section-sm">
+    <div class="container">
+      <div class="trust-badges-grid fade-in">
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon">🚚</div>
+          <div>
+            <div class="trust-badge-title">Free Ongkir</div>
+            <div class="trust-badge-sub">Belanja Min. Rp 200rb</div>
+          </div>
+        </div>
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon">🔒</div>
+          <div>
+            <div class="trust-badge-title">Pembayaran Aman</div>
+            <div class="trust-badge-sub">SSL 256-bit Encrypted</div>
+          </div>
+        </div>
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon">↩️</div>
+          <div>
+            <div class="trust-badge-title">Easy Return</div>
+            <div class="trust-badge-sub">Garansi 30 Hari</div>
+          </div>
+        </div>
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon">💬</div>
+          <div>
+            <div class="trust-badge-title">24/7 Support</div>
+            <div class="trust-badge-sub">Siap Membantu</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CATEGORIES SECTION ───────────────────────── -->
+  <section class="section" id="categories" aria-label="Product categories">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Browse Categories</span>
+        <h2 class="section-title">Belanja Berdasarkan Kategori</h2>
+        <p class="section-subtitle">Temukan gaya yang kamu cari — dari pakaian pria, wanita, anak, hingga aksesori.</p>
+      </div>
+
+      <div class="categories-grid">
+        <a href="shop.html?cat=men" class="category-card fade-in" id="cat-men">
+          <div class="category-card-img">
+            <img src="https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=500&q=80" alt="Fashion Pria" />
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-card-info">
+            <h3>Pria</h3>
+            <span>120+ Produk</span>
+            <div class="category-card-arrow">→</div>
+          </div>
+        </a>
+
+        <a href="shop.html?cat=women" class="category-card fade-in stagger-2" id="cat-women">
+          <div class="category-card-img">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80" alt="Fashion Wanita" />
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-card-info">
+            <h3>Wanita</h3>
+            <span>180+ Produk</span>
+            <div class="category-card-arrow">→</div>
+          </div>
+        </a>
+
+        <a href="shop.html?cat=kids" class="category-card fade-in stagger-3" id="cat-kids">
+          <div class="category-card-img">
+            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&q=80" alt="Fashion Anak" />
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-card-info">
+            <h3>Anak</h3>
+            <span>80+ Produk</span>
+            <div class="category-card-arrow">→</div>
+          </div>
+        </a>
+
+        <a href="shop.html?cat=shoes" class="category-card fade-in stagger-4" id="cat-shoes">
+          <div class="category-card-img">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80" alt="Koleksi Sepatu" />
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-card-info">
+            <h3>Sepatu</h3>
+            <span>95+ Produk</span>
+            <div class="category-card-arrow">→</div>
+          </div>
+        </a>
+
+        <a href="shop.html?cat=accessories" class="category-card fade-in stagger-5" id="cat-accessories">
+          <div class="category-card-img">
+            <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&q=80" alt="Aksesori Fashion" />
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-card-info">
+            <h3>Aksesori</h3>
+            <span>60+ Produk</span>
+            <div class="category-card-arrow">→</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FEATURED PRODUCTS ─────────────────────────── -->
+  <section class="section" style="background: var(--color-bg);" id="featured" aria-label="Featured products">
+    <div class="container">
+      <div class="section-header fade-in" style="display:flex; align-items:center; justify-content:space-between; text-align:left; margin-bottom: var(--space-10);">
+        <div>
+          <span class="section-tag">Pilihan Terbaik</span>
+          <h2 class="section-title" style="margin-bottom: 0;">Featured Products</h2>
+        </div>
+        <a href="shop.html" class="btn btn-outline" id="view-all-featured">
+          Lihat Semua
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="product-tabs fade-in">
+        <button class="product-tab active" data-filter="all" id="tab-all">Semua</button>
+        <button class="product-tab" data-filter="men" id="tab-men">Pria</button>
+        <button class="product-tab" data-filter="women" id="tab-women">Wanita</button>
+        <button class="product-tab" data-filter="shoes" id="tab-shoes">Sepatu</button>
+        <button class="product-tab" data-filter="accessories" id="tab-acc">Aksesori</button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="featured-products-grid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROMO BANNER ──────────────────────────────── -->
+  <section class="promo-banner fade-in" aria-label="Promo banner">
+    <div class="container promo-banner-inner">
+      <div class="promo-text">
+        <span class="promo-tag">🔥 Flash Sale</span>
+        <h2 class="promo-title">Diskon Hingga <span>50%</span></h2>
+        <p class="promo-subtitle">Jangan lewatkan penawaran terbatas hari ini. Belanja sekarang dan hemat lebih banyak!</p>
+        <a href="shop.html?sort=sale" class="btn btn-white btn-lg" id="promo-shop-btn">
+          Belanja Sekarang
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+      <div class="promo-countdown" id="promo-countdown">
+        <div class="countdown-label">Berakhir Dalam</div>
+        <div class="countdown-boxes">
+          <div class="countdown-box">
+            <span id="cd-hours">08</span>
+            <label>Jam</label>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-box">
+            <span id="cd-mins">45</span>
+            <label>Menit</label>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-box">
+            <span id="cd-secs">30</span>
+            <label>Detik</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NEW ARRIVALS ─────────────────────────────── -->
+  <section class="section" id="new-arrivals" aria-label="New arrivals">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Just Arrived</span>
+        <h2 class="section-title">New Arrivals</h2>
+        <p class="section-subtitle">Koleksi terbaru yang baru saja hadir. Fresh dari runway ke lemari pakaianmu.</p>
+      </div>
+
+      <div class="new-arrivals-grid" id="new-arrivals-grid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHY CHOOSE US ─────────────────────────────── -->
+  <section class="section why-us" style="background: var(--color-bg);" aria-label="Why choose One Store">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Keunggulan Kami</span>
+        <h2 class="section-title">Kenapa Pilih One Store?</h2>
+      </div>
+      <div class="why-us-grid">
+        <div class="why-card fade-in">
+          <div class="why-card-icon">🎨</div>
+          <h3>Desain Eksklusif</h3>
+          <p>Koleksi fashion dengan desain unik dan eksklusif yang tidak akan kamu temukan di tempat lain.</p>
+        </div>
+        <div class="why-card fade-in stagger-2">
+          <div class="why-card-icon">✅</div>
+          <h3>Kualitas Terjamin</h3>
+          <p>Setiap produk melewati quality control ketat. Material premium yang nyaman dan tahan lama.</p>
+        </div>
+        <div class="why-card fade-in stagger-3">
+          <div class="why-card-icon">💳</div>
+          <h3>Pembayaran Fleksibel</h3>
+          <p>Bayar dengan metode favoritmu — Transfer Bank, E-Wallet, COD, atau kartu kredit.</p>
+        </div>
+        <div class="why-card fade-in stagger-4">
+          <div class="why-card-icon">📦</div>
+          <h3>Pengiriman Cepat</h3>
+          <p>Partner dengan JNE, SiCepat, dan Go-Send. Lacak pesananmu dalam real-time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ─────────────────────────────── -->
+  <section class="section testimonials" aria-label="Customer testimonials">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Testimoni</span>
+        <h2 class="section-title">Apa Kata Pelanggan Kami</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Kualitas bajunya luar biasa! Bahan adem, jahitan rapi. Pengirimannya cepat banget, besoknya langsung sampai. Highly recommended!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #10B981, #059669);">A</div>
+            <div>
+              <div class="testimonial-name">Ayu Maharani</div>
+              <div class="testimonial-location">Jakarta Selatan</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-in stagger-2">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Udah belanja 5x di sini, selalu puas! Produknya sesuai foto, size chart akurat. CS-nya ramah dan cepat respon. Toko favorit saya!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #3B82F6, #1E40AF);">B</div>
+            <div>
+              <div class="testimonial-name">Budi Santoso</div>
+              <div class="testimonial-location">Surabaya</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-in stagger-3">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Dressnya cantik banget, persis seperti foto. Bahannya premium, nyaman dipakai. Harga segini kualitasnya amazing. Pasti balik lagi!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #F59E0B, #D97706);">C</div>
+            <div>
+              <div class="testimonial-name">Clara Putri</div>
+              <div class="testimonial-location">Bandung</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BRANDS STRIP ─────────────────────────────── -->
+  <section class="brands-section section-sm" style="background: var(--color-bg);">
+    <div class="container">
+      <p class="brands-label fade-in">Brand Pilihan Tersedia di One Store</p>
+      <div class="brands-ticker">
+        <div class="brands-track">
+          <span>ZARA</span><span>H&M</span><span>UNIQLO</span><span>PULL&BEAR</span>
+          <span>MANGO</span><span>STRADIVARIUS</span><span>BERSHKA</span><span>FOREVER21</span>
+          <span>ZALORA</span><span>MARKS & SPENCER</span>
+          <!-- Repeat for seamless loop -->
+          <span>ZARA</span><span>H&M</span><span>UNIQLO</span><span>PULL&BEAR</span>
+          <span>MANGO</span><span>STRADIVARIUS</span><span>BERSHKA</span><span>FOREVER21</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- =====================================================
+     NEWSLETTER + FOOTER
+     ===================================================== -->
+<div class="footer-newsletter">
+  <div class="container newsletter-inner">
+    <div class="newsletter-text">
+      <h3>Dapatkan Update &amp; Promo Eksklusif</h3>
+      <p>Daftar newsletter dan dapatkan diskon 10% untuk pembelian pertamamu!</p>
+    </div>
+    <form class="newsletter-form newsletter-form-el" onsubmit="return false;">
+      <input type="email" class="newsletter-input" placeholder="Masukkan email kamu..." required aria-label="Email for newsletter" />
+      <button class="newsletter-btn" type="submit">Daftar Sekarang</button>
+    </form>
+  </div>
+</div>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-main">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div>
+          <a href="index.html" class="footer-logo">
+            <div class="logo-icon">O</div>
+            <span class="logo-text">One <span>Store</span></span>
+          </a>
+          <p class="footer-desc">One Store adalah destinasi fashion terpercaya untuk pria, wanita, dan anak. Kualitas premium, harga terjangkau.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="TikTok">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.8a8.21 8.21 0 004.84 1.57V7.86a4.86 4.86 0 01-1.07-.17z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.47A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shop -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Shop</h4>
+        <ul class="footer-links">
+          <li><a href="shop.html?cat=men" class="footer-link">Fashion Pria</a></li>
+          <li><a href="shop.html?cat=women" class="footer-link">Fashion Wanita</a></li>
+          <li><a href="shop.html?cat=kids" class="footer-link">Fashion Anak</a></li>
+          <li><a href="shop.html?cat=shoes" class="footer-link">Sepatu</a></li>
+          <li><a href="shop.html?cat=accessories" class="footer-link">Aksesori</a></li>
+          <li><a href="shop.html?sort=sale" class="footer-link">Sale &amp; Promo</a></li>
+        </ul>
+      </div>
+
+      <!-- Customer Service -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Bantuan</h4>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">Cara Pesan</a></li>
+          <li><a href="#" class="footer-link">Pengiriman &amp; Ongkir</a></li>
+          <li><a href="#" class="footer-link">Pengembalian Barang</a></li>
+          <li><a href="#" class="footer-link">Lacak Pesanan</a></li>
+          <li><a href="#" class="footer-link">FAQ</a></li>
+          <li><a href="#" class="footer-link">Hubungi Kami</a></li>
+        </ul>
+      </div>
+
+      <!-- About -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Perusahaan</h4>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">Tentang Kami</a></li>
+          <li><a href="#" class="footer-link">Karir</a></li>
+          <li><a href="#" class="footer-link">Press</a></li>
+          <li><a href="#" class="footer-link">Kebijakan Privasi</a></li>
+          <li><a href="#" class="footer-link">Syarat &amp; Ketentuan</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        &copy; 2026 <a href="index.html">One Store</a>. All rights reserved.
+      </p>
+      <div class="footer-payments">
+        <span class="payment-badge">VISA</span>
+        <span class="payment-badge">MASTERCARD</span>
+        <span class="payment-badge">GOPAY</span>
+        <span class="payment-badge">OVO</span>
+        <span class="payment-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- =====================================================
+     SCRIPTS
+     ===================================================== -->
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>
+  /* ─── Featured Products Grid ───────────────────── */
+  let currentFilter = 'all';
+  const grid = document.getElementById('featured-products-grid');
+  const tabs = document.querySelectorAll('.product-tab');
+  const newGrid = document.getElementById('new-arrivals-grid');
+
+  function renderFeatured(filter) {
+    const products = filter === 'all'
+      ? getFeaturedProducts(8)
+      : PRODUCTS.filter(p => p.category === filter && p.isFeatured).slice(0, 8);
+
+    grid.innerHTML = products.map(p => generateProductCard(p)).join('');
+
+    // Trigger animations
+    setTimeout(() => {
+      grid.querySelectorAll('.fade-in').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 80);
+      });
+    }, 50);
+  }
+
+  // Tab filter
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentFilter = tab.dataset.filter;
+      renderFeatured(currentFilter);
+    });
+  });
+
+  // New Arrivals
+  function renderNewArrivals() {
+    const products = getNewArrivals(4);
+    newGrid.innerHTML = products.map(p => generateProductCard(p)).join('');
+    setTimeout(() => {
+      newGrid.querySelectorAll('.fade-in').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 100);
+      });
+    }, 50);
+  }
+
+  /* ─── Countdown Timer ──────────────────────────── */
+  function startCountdown() {
+    // Set target to 8h 45m 30s from now
+    let totalSecs = 8 * 3600 + 45 * 60 + 30;
+
+    const cdH = document.getElementById('cd-hours');
+    const cdM = document.getElementById('cd-mins');
+    const cdS = document.getElementById('cd-secs');
+
+    const timer = setInterval(() => {
+      if (totalSecs <= 0) {
+        clearInterval(timer);
+        return;
+      }
+      totalSecs--;
+      const h = Math.floor(totalSecs / 3600);
+      const m = Math.floor((totalSecs % 3600) / 60);
+      const s = totalSecs % 60;
+      if (cdH) cdH.textContent = String(h).padStart(2, '0');
+      if (cdM) cdM.textContent = String(m).padStart(2, '0');
+      if (cdS) cdS.textContent = String(s).padStart(2, '0');
+    }, 1000);
+  }
+
+  // Init
+  renderFeatured('all');
+  renderNewArrivals();
+  startCountdown();
+</script>
+
+</body>
+</html>

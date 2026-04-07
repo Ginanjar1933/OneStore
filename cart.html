@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Keranjang belanja One Store. Lihat produk pilihan kamu dan lanjutkan ke checkout." />
+  <title>Keranjang Belanja — One Store</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310B981'/><text y='22' x='7' font-size='18' font-weight='900' fill='white' font-family='sans-serif'>O</text></svg>">
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/cart.css" />
+</head>
+<body>
+
+<div id="toast-container"></div>
+<div class="overlay" id="overlay"></div>
+
+<!-- Mobile Drawer -->
+<nav class="mobile-drawer">
+  <div class="drawer-header">
+    <a href="index.html" class="navbar-logo"><div class="logo-icon">O</div><span class="logo-text">One <span>Store</span></span></a>
+    <button class="drawer-close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+  </div>
+  <div class="drawer-nav">
+    <a href="index.html" class="drawer-nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>Home</a>
+    <a href="shop.html" class="drawer-nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>Shop</a>
+    <a href="profile.html" class="drawer-nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</a>
+  </div>
+  <div class="drawer-footer"><a href="login.html" class="btn btn-primary">Masuk / Daftar</a></div>
+</nav>
+
+<!-- Search Overlay -->
+<div class="search-overlay" id="search-overlay">
+  <div class="search-overlay-inner">
+    <div class="search-input-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" class="search-input" placeholder="Cari produk..." autocomplete="off" />
+      <div class="search-suggestions"></div>
+    </div>
+    <button class="search-close-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="navbar-logo"><div class="logo-icon">O</div><span class="logo-text">One <span>Store</span></span></a>
+    <nav class="navbar-menu">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="shop.html" class="nav-link">Shop</a>
+      <a href="shop.html?cat=men" class="nav-link">Pria</a>
+      <a href="shop.html?cat=women" class="nav-link">Wanita</a>
+      <a href="shop.html?cat=kids" class="nav-link">Anak</a>
+      <a href="shop.html?cat=shoes" class="nav-link">Sepatu</a>
+    </nav>
+    <div class="navbar-actions">
+      <div class="navbar-search"><button class="search-toggle-btn" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></div>
+      <a href="profile.html#wishlist" class="nav-action-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></a>
+      <a href="cart.html" class="nav-action-btn nav-cart-btn" aria-label="Cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><span class="badge-dot cart-badge">0</span></a>
+      <a href="login.html" class="nav-login-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span class="login-text">Masuk</span></a>
+      <button class="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="page-body">
+  <div class="cart-page">
+    <div class="container">
+
+      <!-- Breadcrumb -->
+      <div class="breadcrumb" style="margin-bottom: var(--space-6);">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>Keranjang Belanja</span>
+      </div>
+
+      <!-- Page Title -->
+      <div class="cart-section-title">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        Keranjang Belanja
+        <span class="cart-count-badge" id="cart-count-badge">0</span>
+      </div>
+
+      <!-- Cart Layout -->
+      <div class="cart-layout" id="cart-layout">
+
+        <!-- ─── LEFT: Cart Items ──────────────── -->
+        <div class="cart-items-section">
+          <div class="cart-items-list" id="cart-items-list">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- Cart List Footer -->
+          <div class="cart-list-footer" id="cart-list-footer" style="display:none;">
+            <label class="cart-select-all">
+              <input type="checkbox" id="select-all-cb" class="cart-checkbox" onchange="toggleSelectAll(this)" />
+              Pilih Semua
+            </label>
+            <button class="btn btn-ghost btn-sm" onclick="removeSelected()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>
+              Hapus Dipilih
+            </button>
+          </div>
+
+          <a href="shop.html" class="continue-shopping" id="continue-shopping">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Lanjut Belanja
+          </a>
+        </div>
+
+        <!-- ─── RIGHT: Order Summary ──────────── -->
+        <div class="order-summary-card" id="order-summary-card">
+          <h3 class="summary-title">Ringkasan Pesanan</h3>
+
+          <div class="summary-row">
+            <span class="summary-row-label">Subtotal (<span id="summary-item-count">0</span> produk)</span>
+            <span class="summary-row-value" id="summary-subtotal">Rp 0</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-row-label">Ongkos Kirim</span>
+            <span class="summary-row-value" id="summary-shipping">—</span>
+          </div>
+          <div class="summary-row" id="discount-row" style="display:none;">
+            <span class="summary-row-label">Diskon Voucher</span>
+            <span class="summary-row-value discount" id="summary-discount">− Rp 0</span>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <!-- Voucher -->
+          <div class="voucher-row">
+            <input type="text" id="voucher-input" class="voucher-input" placeholder="Kode voucher" maxlength="20" />
+            <button class="btn btn-outline btn-sm" onclick="applyVoucher()" id="voucher-btn">Pakai</button>
+          </div>
+          <p class="input-hint" style="margin-bottom: var(--space-4);">Coba: <strong>HEMAT10</strong>, <strong>FIRSTBUY</strong>, <strong>GRATIS</strong></p>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-total">
+            <span class="summary-total-label">Total Pembayaran</span>
+            <span class="summary-total-value" id="summary-total">Rp 0</span>
+          </div>
+
+          <a href="checkout.html" class="btn btn-primary w-full btn-lg" id="checkout-btn" style="justify-content:center; margin-bottom: var(--space-3);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            Lanjut ke Checkout
+          </a>
+
+          <div class="summary-payment-icons">
+            <span class="payment-badge">VISA</span>
+            <span class="payment-badge">MASTERCARD</span>
+            <span class="payment-badge">GOPAY</span>
+            <span class="payment-badge">OVO</span>
+            <span class="payment-badge">DANA</span>
+            <span class="payment-badge">COD</span>
+          </div>
+
+          <div class="security-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            Transaksi aman & terenkripsi
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Footer stripped for brevity -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand"><div><a href="index.html" class="footer-logo"><div class="logo-icon">O</div><span class="logo-text">One <span>Store</span></span></a><p class="footer-desc">Fashion terpercaya untuk pria, wanita, dan anak.</p></div></div>
+      <div class="footer-col"><h4 class="footer-col-title">Shop</h4><ul class="footer-links"><li><a href="shop.html" class="footer-link">Semua Produk</a></li><li><a href="shop.html?cat=men" class="footer-link">Pria</a></li><li><a href="shop.html?cat=women" class="footer-link">Wanita</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Bantuan</h4><ul class="footer-links"><li><a href="#" class="footer-link">FAQ</a></li><li><a href="#" class="footer-link">Hubungi Kami</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Akun</h4><ul class="footer-links"><li><a href="login.html" class="footer-link">Login</a></li><li><a href="profile.html" class="footer-link">Profile</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p class="footer-copyright">&copy; 2024 <a href="index.html">One Store</a>.</p></div>
+  </div>
+</footer>
+
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>
+/* ─── Voucher Codes ────────────────────────────── */
+const VOUCHERS = {
+  'HEMAT10':   { type: 'percent', value: 10, min: 100000,  label: 'Diskon 10%' },
+  'FIRSTBUY':  { type: 'fixed',   value: 50000, min: 150000, label: 'Hemat Rp 50.000' },
+  'GRATIS':    { type: 'shipping', value: 0, min: 0, label: 'Gratis Ongkir' },
+};
+
+let appliedVoucher = null;
+let shippingCost   = 0;
+
+/* ─── Render Cart ──────────────────────────────── */
+function renderCart() {
+  const cart      = getCart();
+  const listEl    = document.getElementById('cart-items-list');
+  const badge     = document.getElementById('cart-count-badge');
+  const footer    = document.getElementById('cart-list-footer');
+  const summary   = document.getElementById('order-summary-card');
+
+  badge.textContent = cart.length;
+
+  if (cart.length === 0) {
+    listEl.innerHTML = `
+      <div class="cart-empty">
+        <div class="cart-empty-icon">🛒</div>
+        <h2 style="font-size:var(--font-size-xl); color:var(--color-navy); font-weight:700;">Keranjangmu Masih Kosong</h2>
+        <p style="color:var(--color-gray-400); margin-top:var(--space-2);">Explore koleksi fashion kami dan temukan sesuatu yang kamu suka.</p>
+        <a href="shop.html" class="btn btn-primary btn-lg" style="margin-top:var(--space-4);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          Mulai Belanja
+        </a>
+      </div>`;
+    footer.style.display = 'none';
+    summary.style.opacity = '0.5';
+    summary.style.pointerEvents = 'none';
+    document.getElementById('checkout-btn').style.opacity = '0.5';
+    document.getElementById('checkout-btn').style.pointerEvents = 'none';
+    updateSummary();
+    return;
+  }
+
+  footer.style.display = 'flex';
+  summary.style.opacity = '';
+  summary.style.pointerEvents = '';
+
+  listEl.innerHTML = cart.map((item, index) => `
+    <div class="cart-item-card fade-in" id="cart-item-${index}">
+      <input type="checkbox" class="cart-checkbox item-cb" checked data-index="${index}" onchange="updateSummary()" />
+      <div class="cart-item-img" onclick="window.location.href='product-detail.html?id=${item.id}'">
+        <img src="${item.image}" alt="${item.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=70'" />
+      </div>
+      <div class="cart-item-info">
+        <div class="cart-item-name" onclick="window.location.href='product-detail.html?id=${item.id}'">${item.name}</div>
+        <div class="cart-item-variant">
+          <span class="variant-tag">Size: ${item.size}</span>
+          <span class="variant-tag" style="display:flex;align-items:center;gap:4px;">
+            <span style="width:10px;height:10px;border-radius:50%;background:${item.color};border:1px solid var(--color-border);display:inline-block;"></span>
+            Warna
+          </span>
+        </div>
+        <div class="cart-item-unit-price">Harga satuan: ${formatPrice(item.price)}</div>
+        <div class="cart-item-actions">
+          <div class="qty-stepper">
+            <button class="qty-btn" data-action="minus" onclick="changeQty(${index}, -1)">−</button>
+            <input type="number" class="qty-value" value="${item.qty}" min="1" max="99" onchange="setQty(${index}, this.value)" />
+            <button class="qty-btn" data-action="plus" onclick="changeQty(${index}, 1)">+</button>
+          </div>
+          <button class="cart-remove-btn" onclick="confirmRemove(${index})">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>
+            Hapus
+          </button>
+        </div>
+      </div>
+      <div class="cart-item-subtotal">
+        <span class="price-current">${formatPrice(item.price * item.qty)}</span>
+      </div>
+    </div>
+  `).join('');
+
+  // Fade in
+  setTimeout(() => {
+    listEl.querySelectorAll('.fade-in').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 60);
+    });
+  }, 50);
+
+  updateSummary();
+}
+
+/* ─── Qty Controls ─────────────────────────────── */
+function changeQty(index, delta) {
+  const cart = getCart();
+  const newQty = (cart[index]?.qty || 1) + delta;
+  updateCartQty(index, newQty);
+  renderCart();
+}
+
+function setQty(index, val) {
+  const newQty = parseInt(val) || 1;
+  updateCartQty(index, newQty);
+  renderCart();
+}
+
+/* ─── Remove Item ──────────────────────────────── */
+function confirmRemove(index) {
+  const card = document.getElementById(`cart-item-${index}`);
+  if (card) {
+    card.style.transition = 'all 0.3s ease';
+    card.style.opacity = '0';
+    card.style.transform = 'translateX(30px)';
+  }
+  setTimeout(() => {
+    removeFromCart(index);
+    renderCart();
+  }, 280);
+}
+
+/* ─── Select All ───────────────────────────────── */
+function toggleSelectAll(cb) {
+  document.querySelectorAll('.item-cb').forEach(c => c.checked = cb.checked);
+  updateSummary();
+}
+
+function removeSelected() {
+  const selected = [...document.querySelectorAll('.item-cb:checked')].map(c => parseInt(c.dataset.index));
+  // Remove from highest index to avoid shifting
+  [...selected].sort((a, b) => b - a).forEach(i => removeFromCart(i));
+  renderCart();
+}
+
+/* ─── Update Summary ───────────────────────────── */
+function updateSummary() {
+  const cart = getCart();
+  const selectedCBs = [...document.querySelectorAll('.item-cb:checked')];
+  const selectedTotal = selectedCBs.reduce((sum, cb) => {
+    const i = parseInt(cb.dataset.index);
+    return sum + (cart[i] ? cart[i].price * cart[i].qty : 0);
+  }, 0);
+  const itemCount = selectedCBs.reduce((sum, cb) => {
+    const i = parseInt(cb.dataset.index);
+    return sum + (cart[i] ? cart[i].qty : 0);
+  }, 0);
+
+  // Shipping
+  shippingCost = selectedTotal >= 200000 ? 0 : selectedTotal > 0 ? 15000 : 0;
+
+  // Discount
+  let discountAmt = 0;
+  if (appliedVoucher) {
+    const v = VOUCHERS[appliedVoucher];
+    if (v.type === 'percent') discountAmt = Math.round(selectedTotal * v.value / 100);
+    if (v.type === 'fixed')   discountAmt = v.value;
+    if (v.type === 'shipping') shippingCost = 0;
+  }
+
+  const total = Math.max(0, selectedTotal + shippingCost - discountAmt);
+
+  document.getElementById('summary-item-count').textContent = itemCount;
+  document.getElementById('summary-subtotal').textContent = formatPrice(selectedTotal);
+  document.getElementById('summary-shipping').textContent  = shippingCost === 0 && selectedTotal > 0 ? 'GRATIS 🎉' : formatPrice(shippingCost);
+  document.getElementById('summary-shipping').className    = `summary-row-value${shippingCost === 0 && selectedTotal > 0 ? ' free' : ''}`;
+  document.getElementById('summary-total').textContent     = formatPrice(total);
+
+  if (discountAmt > 0) {
+    document.getElementById('discount-row').style.display = 'flex';
+    document.getElementById('summary-discount').textContent = `− ${formatPrice(discountAmt)}`;
+  } else {
+    document.getElementById('discount-row').style.display = 'none';
+  }
+}
+
+/* ─── Voucher ──────────────────────────────────── */
+function applyVoucher() {
+  const code = document.getElementById('voucher-input').value.trim().toUpperCase();
+  if (!code) { showToast('Kosong', 'Masukkan kode voucher.', 'error'); return; }
+  if (VOUCHERS[code]) {
+    appliedVoucher = code;
+    showToast('Voucher Berhasil!', `${VOUCHERS[code].label} berhasil digunakan.`, 'success');
+    document.getElementById('voucher-btn').textContent = 'Hapus';
+    document.getElementById('voucher-btn').onclick = removeVoucher;
+    document.getElementById('voucher-input').style.borderColor = 'var(--color-primary)';
+    updateSummary();
+  } else {
+    showToast('Voucher Tidak Valid', 'Kode voucher tidak ditemukan.', 'error');
+    document.getElementById('voucher-input').style.borderColor = 'var(--color-danger)';
+  }
+}
+
+function removeVoucher() {
+  appliedVoucher = null;
+  document.getElementById('voucher-input').value = '';
+  document.getElementById('voucher-btn').textContent = 'Pakai';
+  document.getElementById('voucher-btn').onclick = applyVoucher;
+  document.getElementById('voucher-input').style.borderColor = '';
+  updateSummary();
+  showToast('Voucher Dihapus', '', 'info');
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', renderCart);
+</script>
+</body>
+</html>

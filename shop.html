@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Belanja fashion terbaik di One Store. Filter berdasarkan kategori, harga, ukuran. Koleksi pria, wanita, anak, sepatu & aksesori." />
+  <title>Shop — One Store</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310B981'/><text y='22' x='7' font-size='18' font-weight='900' fill='white' font-family='sans-serif'>O</text></svg>">
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/shop.css" />
+</head>
+<body>
+
+<div id="toast-container"></div>
+<div class="overlay" id="overlay"></div>
+
+<!-- Mobile Drawer -->
+<nav class="mobile-drawer">
+  <div class="drawer-header">
+    <a href="index.html" class="navbar-logo"><div class="logo-icon">O</div><span class="logo-text">One <span>Store</span></span></a>
+    <button class="drawer-close" aria-label="Close menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+  <div class="drawer-nav">
+    <a href="index.html" class="drawer-nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>Home</a>
+    <a href="shop.html" class="drawer-nav-link active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>Shop</a>
+    <a href="cart.html" class="drawer-nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>Keranjang</a>
+    <a href="profile.html" class="drawer-nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</a>
+  </div>
+  <div class="drawer-footer"><a href="login.html" class="drawer-auth-link btn btn-primary">Masuk / Daftar</a></div>
+</nav>
+
+<!-- Search Overlay -->
+<div class="search-overlay" id="search-overlay">
+  <div class="search-overlay-inner">
+    <div class="search-input-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" class="search-input" placeholder="Cari produk..." autocomplete="off" />
+      <div class="search-suggestions"></div>
+    </div>
+    <button class="search-close-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="navbar-logo"><div class="logo-icon">O</div><span class="logo-text">One <span>Store</span></span></a>
+    <nav class="navbar-menu">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="shop.html" class="nav-link active">Shop</a>
+      <a href="shop.html?cat=men" class="nav-link">Pria</a>
+      <a href="shop.html?cat=women" class="nav-link">Wanita</a>
+      <a href="shop.html?cat=kids" class="nav-link">Anak</a>
+      <a href="shop.html?cat=shoes" class="nav-link">Sepatu</a>
+    </nav>
+    <div class="navbar-actions">
+      <div class="navbar-search"><button class="search-toggle-btn" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></div>
+      <a href="profile.html#wishlist" class="nav-action-btn" aria-label="Wishlist"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></a>
+      <a href="cart.html" class="nav-action-btn nav-cart-btn" aria-label="Cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><span class="badge-dot cart-badge">0</span></a>
+      <a href="login.html" class="nav-login-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span class="login-text">Masuk</span></a>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main class="page-body">
+
+  <!-- Shop Header -->
+  <div class="shop-page-header">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <span id="breadcrumb-cat">Shop</span>
+      </div>
+      <div class="shop-header-inner">
+        <div class="shop-header-text">
+          <h1 id="shop-page-title">Semua Produk</h1>
+          <p id="search-query-heading"></p>
+        </div>
+        <div class="shop-result-count" id="result-count">Memuat...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Active Filters -->
+  <div class="container">
+    <div class="active-filters" id="active-filters"></div>
+  </div>
+
+  <!-- Shop Layout -->
+  <div class="container">
+    <div class="shop-layout">
+
+      <!-- ─── FILTER SIDEBAR ──────────────────────── -->
+      <aside class="filter-sidebar" role="complementary" aria-label="Filter produk">
+
+        <div class="filter-sidebar-header">
+          <div class="filter-sidebar-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"></line><line x1="8" y1="12" x2="16" y2="12"></line><line x1="11" y1="18" x2="13" y2="18"></line></svg>
+            Filter
+          </div>
+          <button class="filter-reset-btn" id="filter-reset-btn">Reset</button>
+        </div>
+
+        <!-- 1. Kategori -->
+        <div class="filter-group">
+          <div class="filter-group-header">
+            <span class="filter-group-label">Kategori</span>
+            <span class="filter-group-toggle">⌄</span>
+          </div>
+          <div class="filter-group-body">
+            <div class="filter-category-list">
+              <label class="filter-category-item">
+                <label class="filter-category-label">
+                  <input type="checkbox" class="cat-checkbox" value="men" />
+                  <span class="filter-checkbox-custom"></span>
+                  Fashion Pria
+                </label>
+                <span class="filter-category-count">8</span>
+              </label>
+              <label class="filter-category-item">
+                <label class="filter-category-label">
+                  <input type="checkbox" class="cat-checkbox" value="women" />
+                  <span class="filter-checkbox-custom"></span>
+                  Fashion Wanita
+                </label>
+                <span class="filter-category-count">8</span>
+              </label>
+              <label class="filter-category-item">
+                <label class="filter-category-label">
+                  <input type="checkbox" class="cat-checkbox" value="kids" />
+                  <span class="filter-checkbox-custom"></span>
+                  Fashion Anak
+                </label>
+                <span class="filter-category-count">2</span>
+              </label>
+              <label class="filter-category-item">
+                <label class="filter-category-label">
+                  <input type="checkbox" class="cat-checkbox" value="shoes" />
+                  <span class="filter-checkbox-custom"></span>
+                  Sepatu
+                </label>
+                <span class="filter-category-count">4</span>
+              </label>
+              <label class="filter-category-item">
+                <label class="filter-category-label">
+                  <input type="checkbox" class="cat-checkbox" value="accessories" />
+                  <span class="filter-checkbox-custom"></span>
+                  Aksesori
+                </label>
+                <span class="filter-category-count">5</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Harga -->
+        <div class="filter-group">
+          <div class="filter-group-header">
+            <span class="filter-group-label">Rentang Harga</span>
+            <span class="filter-group-toggle">⌄</span>
+          </div>
+          <div class="filter-group-body">
+            <div class="price-range-wrap">
+              <div class="price-range-inputs">
+                <div class="price-input-wrap">
+                  <label>Min (Rp)</label>
+                  <input type="number" id="price-min" class="input-field price-input" value="0" min="0" max="2000000" step="10000" placeholder="0" />
+                </div>
+                <div class="price-input-wrap">
+                  <label>Max (Rp)</label>
+                  <input type="number" id="price-max" class="input-field price-input" value="2000000" min="0" max="2000000" step="10000" placeholder="2000000" />
+                </div>
+              </div>
+              <!-- Quick price presets -->
+              <div class="filter-sizes" style="margin-top: 8px;">
+                <button class="size-chip" onclick="setQuickPrice(0, 150000)">< 150rb</button>
+                <button class="size-chip" onclick="setQuickPrice(150000, 300000)">150-300rb</button>
+                <button class="size-chip" onclick="setQuickPrice(300000, 600000)">300-600rb</button>
+                <button class="size-chip" onclick="setQuickPrice(600000, 2000000)">> 600rb</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Ukuran -->
+        <div class="filter-group">
+          <div class="filter-group-header">
+            <span class="filter-group-label">Ukuran</span>
+            <span class="filter-group-toggle">⌄</span>
+          </div>
+          <div class="filter-group-body">
+            <div class="filter-sizes">
+              <button class="size-chip" data-size="XS">XS</button>
+              <button class="size-chip" data-size="S">S</button>
+              <button class="size-chip" data-size="M">M</button>
+              <button class="size-chip" data-size="L">L</button>
+              <button class="size-chip" data-size="XL">XL</button>
+              <button class="size-chip" data-size="XXL">XXL</button>
+              <button class="size-chip" data-size="One Size">One Size</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Warna -->
+        <div class="filter-group">
+          <div class="filter-group-header">
+            <span class="filter-group-label">Warna</span>
+            <span class="filter-group-toggle">⌄</span>
+          </div>
+          <div class="filter-group-body">
+            <div class="filter-colors">
+              <div class="color-dot" data-color="#FFFFFF" title="Putih" style="background:#F8FAFC; border: 2px solid var(--color-border);"></div>
+              <div class="color-dot" data-color="#0F172A" title="Hitam" style="background:#0F172A;"></div>
+              <div class="color-dot" data-color="#1E40AF" title="Biru Navy" style="background:#1E40AF;"></div>
+              <div class="color-dot" data-color="#374151" title="Abu-abu" style="background:#374151;"></div>
+              <div class="color-dot" data-color="#C4A882" title="Krem" style="background:#C4A882;"></div>
+              <div class="color-dot" data-color="#8B4513" title="Coklat" style="background:#8B4513;"></div>
+              <div class="color-dot" data-color="#10B981" title="Hijau" style="background:#10B981;"></div>
+              <div class="color-dot" data-color="#DC2626" title="Merah" style="background:#DC2626;"></div>
+              <div class="color-dot" data-color="#7C3AED" title="Ungu" style="background:#7C3AED;"></div>
+              <div class="color-dot" data-color="#F59E0B" title="Kuning" style="background:#F59E0B;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Rating -->
+        <div class="filter-group">
+          <div class="filter-group-header">
+            <span class="filter-group-label">Rating</span>
+            <span class="filter-group-toggle">⌄</span>
+          </div>
+          <div class="filter-group-body">
+            <div class="filter-ratings">
+              <label class="rating-filter-item">
+                <input type="radio" name="rating-filter" value="4.5" />
+                <span class="rating-star-row">★★★★★</span>
+                <span>4.5+</span>
+              </label>
+              <label class="rating-filter-item">
+                <input type="radio" name="rating-filter" value="4" />
+                <span class="rating-star-row">★★★★☆</span>
+                <span>4.0+</span>
+              </label>
+              <label class="rating-filter-item">
+                <input type="radio" name="rating-filter" value="3" />
+                <span class="rating-star-row">★★★☆☆</span>
+                <span>3.0+</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <button class="filter-apply-btn" onclick="applyFilters()">Terapkan Filter</button>
+      </aside>
+
+      <!-- ─── PRODUCTS AREA ───────────────────────── -->
+      <div class="products-area">
+
+        <!-- Top Bar -->
+        <div class="products-topbar">
+          <div class="flex items-center gap-3">
+            <!-- Mobile filter btn -->
+            <button class="mobile-filter-btn" id="mobile-filter-open">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"></line><line x1="8" y1="12" x2="16" y2="12"></line><line x1="11" y1="18" x2="13" y2="18"></line></svg>
+              Filter
+              <span class="mobile-filter-badge" id="filter-badge" style="display:none">0</span>
+            </button>
+
+            <!-- Sort -->
+            <div class="sort-wrap">
+              <span class="sort-label">Urutkan:</span>
+              <select class="sort-select" id="sort-select" aria-label="Sort products">
+                <option value="popular">Terpopuler</option>
+                <option value="newest">Terbaru</option>
+                <option value="price-low">Harga Terendah</option>
+                <option value="price-high">Harga Tertinggi</option>
+                <option value="rating">Rating Tertinggi</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- View Toggle -->
+          <div class="view-toggle">
+            <button class="view-btn active" data-view="grid" title="Grid view" id="view-grid">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></svg>
+            </button>
+            <button class="view-btn" data-view="list" title="List view" id="view-list">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="shop-products-grid">
+          <!-- Skeleton loader -->
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line short"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line short"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line short"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line short"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line short"></div></div></div>
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line short"></div></div></div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination"></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Mobile Filter Bottom Sheet -->
+<div class="filter-sheet" id="filter-sheet">
+  <div class="filter-sheet-handle"></div>
+  <div class="filter-sheet-header">
+    <h3>Filter Produk</h3>
+    <button id="filter-sheet-close" class="drawer-close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+  <div class="filter-sheet-body">
+    <!-- Category Buttons (mobile) -->
+    <div style="padding: var(--space-4) 0; border-bottom: 1px solid var(--color-border-light); margin-bottom: var(--space-4);">
+      <p style="font-size: var(--font-size-sm); font-weight: 700; color: var(--color-navy); margin-bottom: var(--space-3);">Kategori</p>
+      <div class="product-tabs" style="flex-wrap: wrap;">
+        <button class="product-tab active" onclick="setMobileCat('all', this)">Semua</button>
+        <button class="product-tab" onclick="setMobileCat('men', this)">Pria</button>
+        <button class="product-tab" onclick="setMobileCat('women', this)">Wanita</button>
+        <button class="product-tab" onclick="setMobileCat('kids', this)">Anak</button>
+        <button class="product-tab" onclick="setMobileCat('shoes', this)">Sepatu</button>
+        <button class="product-tab" onclick="setMobileCat('accessories', this)">Aksesori</button>
+      </div>
+    </div>
+    <!-- Sizes (mobile) -->
+    <div style="padding: var(--space-2) 0; margin-bottom: var(--space-4);">
+      <p style="font-size: var(--font-size-sm); font-weight: 700; color: var(--color-navy); margin-bottom: var(--space-3);">Ukuran</p>
+      <div class="filter-sizes">
+        <button class="size-chip" data-size="XS">XS</button>
+        <button class="size-chip" data-size="S">S</button>
+        <button class="size-chip" data-size="M">M</button>
+        <button class="size-chip" data-size="L">L</button>
+        <button class="size-chip" data-size="XL">XL</button>
+        <button class="size-chip" data-size="XXL">XXL</button>
+      </div>
+    </div>
+  </div>
+  <div class="filter-sheet-footer">
+    <button class="btn btn-ghost flex-1" onclick="resetAllFilters(); document.getElementById('filter-sheet').classList.remove('open')">Reset</button>
+    <button class="btn btn-primary flex-1" id="filter-sheet-apply">Terapkan</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer-newsletter">
+  <div class="container newsletter-inner">
+    <div class="newsletter-text">
+      <h3>Dapatkan Update &amp; Promo Eksklusif</h3>
+      <p>Daftar newsletter dan dapatkan diskon 10% untuk pembelian pertamamu!</p>
+    </div>
+    <form class="newsletter-form newsletter-form-el" onsubmit="return false;">
+      <input type="email" class="newsletter-input" placeholder="Email kamu..." required />
+      <button class="newsletter-btn" type="submit">Daftar</button>
+    </form>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <div>
+          <a href="index.html" class="footer-logo"><div class="logo-icon">O</div><span class="logo-text">One <span>Store</span></span></a>
+          <p class="footer-desc">Destinasi fashion terpercaya untuk pria, wanita, dan anak.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+            <a href="#" class="social-link" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-col"><h4 class="footer-col-title">Shop</h4><ul class="footer-links"><li><a href="shop.html?cat=men" class="footer-link">Fashion Pria</a></li><li><a href="shop.html?cat=women" class="footer-link">Fashion Wanita</a></li><li><a href="shop.html?cat=shoes" class="footer-link">Sepatu</a></li><li><a href="shop.html?cat=accessories" class="footer-link">Aksesori</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Bantuan</h4><ul class="footer-links"><li><a href="#" class="footer-link">Cara Pesan</a></li><li><a href="#" class="footer-link">Pengiriman</a></li><li><a href="#" class="footer-link">Return</a></li><li><a href="#" class="footer-link">FAQ</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Akun</h4><ul class="footer-links"><li><a href="login.html" class="footer-link">Login</a></li><li><a href="register.html" class="footer-link">Daftar</a></li><li><a href="profile.html" class="footer-link">Profile</a></li><li><a href="cart.html" class="footer-link">Keranjang</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; 2024 <a href="index.html">One Store</a>. All rights reserved.</p>
+      <div class="footer-payments"><span class="payment-badge">VISA</span><span class="payment-badge">GOPAY</span><span class="payment-badge">OVO</span><span class="payment-badge">COD</span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script src="js/filter.js"></script>
+<script>
+  /* Quick price preset helper */
+  function setQuickPrice(min, max) {
+    shopState.minPrice = min;
+    shopState.maxPrice = max;
+    const minEl = document.getElementById('price-min');
+    const maxEl = document.getElementById('price-max');
+    if (minEl) minEl.value = min;
+    if (maxEl) maxEl.value = max;
+    shopState.page = 1;
+    applyFilters();
+    // Highlight active preset
+    document.querySelectorAll('.price-range-wrap .size-chip').forEach(c => c.classList.remove('active'));
+  }
+
+  /* Mobile category tab */
+  function setMobileCat(cat, btn) {
+    shopState.category = cat;
+    shopState.page = 1;
+    document.querySelectorAll('.filter-sheet .product-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  /* Update page title based on category */
+  function updatePageTitle() {
+    const catLabels = {
+      all: 'Semua Produk',
+      men: 'Fashion Pria',
+      women: 'Fashion Wanita',
+      kids: 'Fashion Anak',
+      shoes: 'Koleksi Sepatu',
+      accessories: 'Aksesori Fashion'
+    };
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('cat') || 'all';
+    const titleEl = document.getElementById('shop-page-title');
+    const breadEl = document.getElementById('breadcrumb-cat');
+    if (titleEl) titleEl.textContent = catLabels[cat] || 'Semua Produk';
+    if (breadEl) breadEl.textContent = catLabels[cat] || 'Shop';
+  }
+
+  updatePageTitle();
+</script>
+</body>
+</html>

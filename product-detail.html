@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Detail produk One Store. Pilih ukuran, warna, dan jumlah. Baca review pelanggan dan temukan produk serupa." />
+  <title id="page-title">Detail Produk — One Store</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310B981'/><text y='22' x='7' font-size='18' font-weight='900' fill='white' font-family='sans-serif'>O</text></svg>">
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/product.css" />
+</head>
+<body>
+
+<div id="toast-container"></div>
+<div class="overlay" id="overlay"></div>
+
+<!-- Mobile Drawer -->
+<nav class="mobile-drawer">
+  <div class="drawer-header">
+    <a href="index.html" class="navbar-logo"><div class="logo-icon">O</div><span class="logo-text">One <span>Store</span></span></a>
+    <button class="drawer-close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+  </div>
+  <div class="drawer-nav">
+    <a href="index.html" class="drawer-nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>Home</a>
+    <a href="shop.html" class="drawer-nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>Shop</a>
+    <a href="cart.html" class="drawer-nav-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>Keranjang</a>
+  </div>
+  <div class="drawer-footer"><a href="login.html" class="btn btn-primary">Masuk / Daftar</a></div>
+</nav>
+
+<!-- Search Overlay -->
+<div class="search-overlay" id="search-overlay">
+  <div class="search-overlay-inner">
+    <div class="search-input-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" class="search-input" placeholder="Cari produk..." autocomplete="off" />
+      <div class="search-suggestions"></div>
+    </div>
+    <button class="search-close-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="navbar-logo"><div class="logo-icon">O</div><span class="logo-text">One <span>Store</span></span></a>
+    <nav class="navbar-menu">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="shop.html" class="nav-link">Shop</a>
+      <a href="shop.html?cat=men" class="nav-link">Pria</a>
+      <a href="shop.html?cat=women" class="nav-link">Wanita</a>
+      <a href="shop.html?cat=kids" class="nav-link">Anak</a>
+      <a href="shop.html?cat=shoes" class="nav-link">Sepatu</a>
+    </nav>
+    <div class="navbar-actions">
+      <div class="navbar-search"><button class="search-toggle-btn" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></div>
+      <a href="profile.html#wishlist" class="nav-action-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></a>
+      <a href="cart.html" class="nav-action-btn nav-cart-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><span class="badge-dot cart-badge">0</span></a>
+      <a href="login.html" class="nav-login-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span class="login-text">Masuk</span></a>
+      <button class="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main class="page-body">
+  <section class="product-detail-section">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb fade-in" id="breadcrumb-wrap">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="shop.html">Shop</a>
+        <span class="breadcrumb-sep">›</span>
+        <span id="breadcrumb-cat">Kategori</span>
+        <span class="breadcrumb-sep">›</span>
+        <span id="breadcrumb-name">Produk</span>
+      </div>
+
+      <div class="product-detail-grid">
+        <!-- ─── GALLERY ─────────────────────────── -->
+        <div class="product-gallery fade-in-left">
+          <div class="gallery-main">
+            <img id="gallery-main-img" class="gallery-main-img" src="" alt="Product Image" />
+            <div class="gallery-badges" id="gallery-badges"></div>
+            <button class="gallery-wishlist-btn" id="gallery-wishlist-btn" aria-label="Add to wishlist">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </button>
+            <span class="gallery-zoom-hint">🔍 Klik untuk zoom</span>
+          </div>
+          <div class="gallery-thumbs" id="gallery-thumbs"></div>
+        </div>
+
+        <!-- ─── PRODUCT INFO ──────────────────── -->
+        <div class="product-info fade-in-right">
+          <div class="product-info-top">
+            <p class="product-info-category" id="product-category">—</p>
+            <h1 class="product-info-title" id="product-title">Memuat...</h1>
+
+            <!-- Rating -->
+            <div class="product-rating-row">
+              <div class="product-stars" id="product-stars">
+                <!-- Rendered by JS -->
+              </div>
+              <span class="product-rating-score" id="product-rating-score">—</span>
+              <span class="product-rating-count" id="product-rating-count">(0 ulasan)</span>
+              <span class="product-sold-count" id="product-sold">0 terjual</span>
+            </div>
+
+            <!-- Price -->
+            <div class="product-price-block">
+              <span class="product-price-current" id="product-price">—</span>
+              <span class="product-price-original" id="product-price-original" style="display:none;">—</span>
+              <span class="product-price-discount" id="product-price-discount" style="display:none;">—</span>
+            </div>
+            <p class="product-stock-status">
+              <span class="stock-dot in-stock"></span>
+              <span>Stok tersedia</span>
+            </p>
+          </div>
+
+          <!-- Options -->
+          <div class="product-options">
+            <!-- Size -->
+            <div class="option-block" id="size-block">
+              <div class="option-label">
+                <span class="option-label-text">Ukuran: <span class="option-selected-val" id="selected-size-val">—</span></span>
+                <span class="size-guide-link" onclick="openSizeGuide()">📏 Panduan Ukuran</span>
+              </div>
+              <div class="size-options" id="size-options"></div>
+            </div>
+
+            <!-- Color -->
+            <div class="option-block" id="color-block">
+              <div class="option-label">
+                <span class="option-label-text">Warna: <span class="option-selected-val" id="selected-color-val">—</span></span>
+              </div>
+              <div class="color-options" id="color-options"></div>
+            </div>
+
+            <!-- Qty -->
+            <div class="option-block">
+              <div class="option-label">
+                <span class="option-label-text">Jumlah</span>
+              </div>
+              <div class="qty-row">
+                <div class="qty-stepper">
+                  <button class="qty-btn" data-action="minus">−</button>
+                  <input type="number" class="qty-value" id="qty-input" value="1" min="1" max="99" />
+                  <button class="qty-btn" data-action="plus">+</button>
+                </div>
+                <span style="font-size: var(--font-size-sm); color: var(--color-gray-400);" id="stock-label">Stok: —</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="product-actions">
+            <div class="product-actions-row">
+              <button class="btn btn-outline btn-add-cart" id="btn-add-cart" onclick="handleAddToCart()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                Tambah ke Keranjang
+              </button>
+              <button class="btn btn-primary btn-buy-now" id="btn-buy-now" onclick="handleBuyNow()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 12 19 12"></polyline><polyline points="12 5 19 12 12 19"></polyline></svg>
+                Beli Sekarang
+              </button>
+            </div>
+          </div>
+
+          <!-- Meta Info -->
+          <div class="product-meta-info">
+            <div class="product-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+              <span>Pengiriman ke seluruh Indonesia. <strong>Gratis ongkir</strong> min. Rp 200.000</span>
+            </div>
+            <div class="product-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+              <span>Garansi retur <strong>30 hari</strong> jika produk tidak sesuai</span>
+            </div>
+            <div class="product-meta-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              <span>Pembayaran <strong>aman & terenkripsi</strong> 256-bit SSL</span>
+            </div>
+          </div>
+
+          <!-- Share -->
+          <div class="product-share">
+            <span>Bagikan:</span>
+            <button class="share-btn" title="Copy link" onclick="copyLink()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            </button>
+            <button class="share-btn" title="WhatsApp" onclick="shareWhatsApp()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PRODUCT TABS ───────────────────────────── -->
+  <section class="product-tabs-section fade-in">
+    <div class="container">
+      <div class="product-tabs-nav" role="tablist">
+        <button class="product-tab-link active" data-tab="description" role="tab" onclick="switchTab(this)">Deskripsi</button>
+        <button class="product-tab-link" data-tab="specs" role="tab" onclick="switchTab(this)">Spesifikasi</button>
+        <button class="product-tab-link" data-tab="reviews" role="tab" onclick="switchTab(this)">Ulasan (<span id="review-count">0</span>)</button>
+      </div>
+
+      <!-- Description -->
+      <div class="product-tab-pane active" id="tab-description">
+        <div class="product-description">
+          <p id="product-description-text">Memuat deskripsi produk...</p>
+          <ul>
+            <li>Bahan premium berkualitas tinggi</li>
+            <li>Jahitan rapi dan kuat</li>
+            <li>Tersedia dalam berbagai ukuran dan warna</li>
+            <li>Cocok untuk berbagai kesempatan</li>
+            <li>Mudah dirawat, bisa dicuci dengan mesin</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Specs -->
+      <div class="product-tab-pane" id="tab-specs">
+        <table class="specs-table" id="specs-table">
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- Reviews -->
+      <div class="product-tab-pane" id="tab-reviews">
+        <!-- Rating Summary -->
+        <div class="reviews-summary">
+          <div class="review-score-big">
+            <div class="review-num" id="review-avg">4.7</div>
+            <div class="review-stars-big">★★★★★</div>
+            <div class="review-total" id="review-total-text">128 ulasan</div>
+          </div>
+          <div class="review-bars">
+            <div class="review-bar-row">
+              <span class="review-bar-label">5★</span>
+              <div class="review-bar-track"><div class="review-bar-fill" style="width: 72%"></div></div>
+              <span class="review-bar-pct">72%</span>
+            </div>
+            <div class="review-bar-row">
+              <span class="review-bar-label">4★</span>
+              <div class="review-bar-track"><div class="review-bar-fill" style="width: 18%"></div></div>
+              <span class="review-bar-pct">18%</span>
+            </div>
+            <div class="review-bar-row">
+              <span class="review-bar-label">3★</span>
+              <div class="review-bar-track"><div class="review-bar-fill" style="width: 7%"></div></div>
+              <span class="review-bar-pct">7%</span>
+            </div>
+            <div class="review-bar-row">
+              <span class="review-bar-label">2★</span>
+              <div class="review-bar-track"><div class="review-bar-fill" style="width: 2%"></div></div>
+              <span class="review-bar-pct">2%</span>
+            </div>
+            <div class="review-bar-row">
+              <span class="review-bar-label">1★</span>
+              <div class="review-bar-track"><div class="review-bar-fill" style="width: 1%"></div></div>
+              <span class="review-bar-pct">1%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review List -->
+        <div class="review-list" id="review-list">
+          <!-- Sample reviews rendered by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RELATED PRODUCTS ───────────────────────── -->
+  <section class="related-products">
+    <div class="container">
+      <div class="section-header fade-in" style="text-align:left; margin-bottom: var(--space-8);">
+        <span class="section-tag">Produk Serupa</span>
+        <h2 class="section-title" style="margin-bottom: 0;">You Might Also Like</h2>
+      </div>
+      <div class="related-products-grid" id="related-products-grid"></div>
+    </div>
+  </section>
+</main>
+
+<!-- Size Guide Modal -->
+<div class="overlay" id="size-guide-overlay" onclick="closeSizeGuide()"></div>
+<div class="size-guide-modal" id="size-guide-modal">
+  <div class="size-guide-card">
+    <button class="size-guide-close" onclick="closeSizeGuide()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <h3 class="size-guide-title">📏 Panduan Ukuran</h3>
+    <table class="size-guide-table">
+      <thead>
+        <tr><th>Ukuran</th><th>Lingkar Dada (cm)</th><th>Panjang Badan (cm)</th><th>Lingkar Pinggang (cm)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>XS</td><td>84–88</td><td>66</td><td>64–68</td></tr>
+        <tr><td>S</td><td>88–92</td><td>68</td><td>68–72</td></tr>
+        <tr><td>M</td><td>92–96</td><td>70</td><td>72–76</td></tr>
+        <tr><td>L</td><td>96–100</td><td>72</td><td>76–80</td></tr>
+        <tr><td>XL</td><td>100–104</td><td>74</td><td>80–84</td></tr>
+        <tr><td>XXL</td><td>104–110</td><td>76</td><td>84–90</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer-newsletter">
+  <div class="container newsletter-inner">
+    <div class="newsletter-text"><h3>Newsletter One Store</h3><p>Diskon 10% untuk pembelian pertama!</p></div>
+    <form class="newsletter-form newsletter-form-el" onsubmit="return false;"><input type="email" class="newsletter-input" placeholder="Email kamu..." required /><button class="newsletter-btn" type="submit">Daftar</button></form>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand"><div><a href="index.html" class="footer-logo"><div class="logo-icon">O</div><span class="logo-text">One <span>Store</span></span></a><p class="footer-desc">Fashion terpercaya untuk pria, wanita, dan anak.</p></div></div>
+      <div class="footer-col"><h4 class="footer-col-title">Shop</h4><ul class="footer-links"><li><a href="shop.html?cat=men" class="footer-link">Pria</a></li><li><a href="shop.html?cat=women" class="footer-link">Wanita</a></li><li><a href="shop.html?cat=shoes" class="footer-link">Sepatu</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Bantuan</h4><ul class="footer-links"><li><a href="cart.html" class="footer-link">Keranjang</a></li><li><a href="checkout.html" class="footer-link">Checkout</a></li></ul></div>
+      <div class="footer-col"><h4 class="footer-col-title">Akun</h4><ul class="footer-links"><li><a href="login.html" class="footer-link">Login</a></li><li><a href="profile.html" class="footer-link">Profile</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p class="footer-copyright">&copy; 2024 <a href="index.html">One Store</a>.</p></div>
+  </div>
+</footer>
+
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+<script>
+/* ─── Product State ────────────────────────────── */
+let currentProduct = null;
+let selectedSize   = null;
+let selectedColor  = null;
+
+/* ─── Init ─────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  const params     = new URLSearchParams(window.location.search);
+  const productId  = parseInt(params.get('id')) || 1;
+  const product    = getProductById(productId);
+
+  if (!product) {
+    document.querySelector('.product-detail-section').innerHTML = `
+      <div class="container"><div class="empty-state">
+        <div class="empty-state-icon">😕</div>
+        <h2 class="empty-state-title">Produk Tidak Ditemukan</h2>
+        <p class="empty-state-text">Produk yang kamu cari tidak ada atau sudah dihapus.</p>
+        <a href="shop.html" class="btn btn-primary">Kembali ke Shop</a>
+      </div></div>`;
+    return;
+  }
+
+  currentProduct = product;
+  selectedSize   = product.sizes[0];
+  selectedColor  = product.colors[0];
+
+  renderProduct(product);
+  renderRelatedProducts(product);
+  renderReviews(product);
+
+  // page title
+  document.title = `${product.name} — One Store`;
+
+  // Wishlist state
+  const wishBtn = document.getElementById('gallery-wishlist-btn');
+  if (isInWishlist(product.id)) wishBtn?.classList.add('wishlisted');
+  wishBtn?.addEventListener('click', () => {
+    toggleWishlist(product.id, wishBtn);
+  });
+});
+
+/* ─── Render Product ───────────────────────────── */
+function renderProduct(p) {
+  const catLabels = {men:'Fashion Pria', women:'Fashion Wanita', kids:'Fashion Anak', shoes:'Sepatu', accessories:'Aksesori'};
+
+  // Breadcrumb
+  document.getElementById('breadcrumb-cat').textContent = catLabels[p.category] || p.category;
+  document.getElementById('breadcrumb-name').textContent = p.name;
+
+  // Category & title
+  document.getElementById('product-category').textContent = `${catLabels[p.category]} · ${p.subcategory}`;
+  document.getElementById('product-title').textContent = p.name;
+
+  // Gallery
+  renderGallery(p);
+
+  // Rating
+  const starsContainer = document.getElementById('product-stars');
+  starsContainer.innerHTML = '';
+  const fullStars = Math.floor(p.rating);
+  for (let i = 0; i < 5; i++) {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '18'); svg.setAttribute('height', '18');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('fill', i < fullStars ? 'currentColor' : 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.innerHTML = '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>';
+    starsContainer.appendChild(svg);
+  }
+  document.getElementById('product-rating-score').textContent = p.rating;
+  document.getElementById('product-rating-count').textContent = `(${p.reviews} ulasan)`;
+  document.getElementById('product-sold').textContent = `${p.sold} terjual`;
+  document.getElementById('review-count').textContent = p.reviews;
+  document.getElementById('review-avg').textContent = p.rating;
+  document.getElementById('review-total-text').textContent = `${p.reviews} ulasan`;
+
+  // Price
+  document.getElementById('product-price').textContent = formatPrice(p.price);
+  if (p.originalPrice) {
+    const origEl = document.getElementById('product-price-original');
+    const discEl = document.getElementById('product-price-discount');
+    origEl.textContent = formatPrice(p.originalPrice);
+    origEl.style.display = '';
+    discEl.textContent = `-${p.discount}%`;
+    discEl.style.display = '';
+  }
+
+  // Stock
+  document.getElementById('stock-label').textContent = `Stok: ${p.stock}`;
+
+  // Sizes
+  renderSizeOptions(p.sizes);
+
+  // Colors
+  renderColorOptions(p.colors, p.colorNames);
+
+  // Badges
+  const badgesEl = document.getElementById('gallery-badges');
+  if (p.discount > 0) {
+    badgesEl.innerHTML += `<span class="gallery-badge gallery-badge-sale">−${p.discount}%</span>`;
+  }
+  if (p.isNew) {
+    badgesEl.innerHTML += `<span class="gallery-badge gallery-badge-new">NEW</span>`;
+  }
+  if (p.badge && p.badge !== 'New' && p.badge !== 'Sale') {
+    badgesEl.innerHTML += `<span class="gallery-badge" style="background:var(--color-accent); color:var(--color-navy);">${p.badge}</span>`;
+  }
+
+  // Description
+  document.getElementById('product-description-text').textContent = p.description;
+
+  // Specs table
+  const specs = [
+    ['Kategori', catLabels[p.category]],
+    ['Subkategori', p.subcategory],
+    ['Material', 'Cotton Premium / Polyester Blend'],
+    ['Ukuran Tersedia', p.sizes.join(', ')],
+    ['Warna Tersedia', p.colorNames.join(', ')],
+    ['Stok', p.stock + ' unit'],
+    ['SKU', `OS-${String(p.id).padStart(4, '0')}`],
+    ['Berat', '250–400 gram (tergantung ukuran)'],
+  ];
+  const tbody = document.querySelector('#specs-table tbody');
+  tbody.innerHTML = specs.map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join('');
+}
+
+/* ─── Gallery ──────────────────────────────────── */
+function renderGallery(p) {
+  const mainImg = document.getElementById('gallery-main-img');
+  const thumbsEl = document.getElementById('gallery-thumbs');
+  mainImg.src = p.images[0];
+  mainImg.alt = p.name;
+
+  thumbsEl.innerHTML = p.images.map((img, i) => `
+    <div class="gallery-thumb ${i === 0 ? 'active' : ''}" onclick="switchGalleryImg('${img}', this)">
+      <img src="${img}" alt="View ${i + 1}" loading="lazy" />
+    </div>
+  `).join('');
+}
+
+function switchGalleryImg(src, thumbEl) {
+  const mainImg = document.getElementById('gallery-main-img');
+  mainImg.classList.add('changing');
+  setTimeout(() => {
+    mainImg.src = src;
+    mainImg.classList.remove('changing');
+  }, 200);
+  document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+  thumbEl.classList.add('active');
+}
+
+/* ─── Sizes ────────────────────────────────────── */
+function renderSizeOptions(sizes) {
+  const container = document.getElementById('size-options');
+  container.innerHTML = sizes.map((s, i) => `
+    <button class="size-option-btn ${i === 0 ? 'selected' : ''}"
+      data-size="${s}" onclick="selectSize('${s}', this)">
+      ${s}
+    </button>
+  `).join('');
+  document.getElementById('selected-size-val').textContent = sizes[0] || '—';
+  selectedSize = sizes[0];
+}
+
+function selectSize(size, btn) {
+  document.querySelectorAll('.size-option-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedSize = size;
+  document.getElementById('selected-size-val').textContent = size;
+}
+
+/* ─── Colors ───────────────────────────────────── */
+function renderColorOptions(colors, colorNames) {
+  const container = document.getElementById('color-options');
+  container.innerHTML = colors.map((c, i) => `
+    <button class="color-option-btn ${i === 0 ? 'selected' : ''}"
+      style="background-color: ${c};"
+      title="${colorNames[i] || c}"
+      data-color="${c}"
+      data-name="${colorNames[i] || c}"
+      onclick="selectColor('${c}', '${colorNames[i] || c}', this)">
+    </button>
+  `).join('');
+  document.getElementById('selected-color-val').textContent = colorNames[0] || '—';
+  selectedColor = colors[0];
+}
+
+function selectColor(color, name, btn) {
+  document.querySelectorAll('.color-option-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedColor = color;
+  document.getElementById('selected-color-val').textContent = name;
+}
+
+/* ─── Cart Actions ──────────────────────────────── */
+function handleAddToCart() {
+  if (!currentProduct) return;
+  if (!selectedSize) {
+    showToast('Pilih Ukuran', 'Silakan pilih ukuran terlebih dahulu.', 'error');
+    document.getElementById('size-options').animate([
+      { transform: 'translateX(-6px)' }, { transform: 'translateX(6px)' },
+      { transform: 'translateX(-4px)' }, { transform: 'translateX(4px)' },
+      { transform: 'translateX(0)' }
+    ], { duration: 400 });
+    return;
+  }
+  const qty = parseInt(document.getElementById('qty-input').value) || 1;
+  addToCart(currentProduct.id, selectedSize, selectedColor, qty);
+}
+
+function handleBuyNow() {
+  if (!currentProduct) return;
+  if (!selectedSize) {
+    showToast('Pilih Ukuran', 'Silakan pilih ukuran terlebih dahulu.', 'error');
+    return;
+  }
+  const qty = parseInt(document.getElementById('qty-input').value) || 1;
+  addToCart(currentProduct.id, selectedSize, selectedColor, qty);
+  window.location.href = 'checkout.html';
+}
+
+/* ─── Related Products ──────────────────────────── */
+function renderRelatedProducts(p) {
+  const related = getRelatedProducts(p.id, 4);
+  const grid = document.getElementById('related-products-grid');
+  grid.innerHTML = related.map(r => generateProductCard(r)).join('');
+  setTimeout(() => {
+    grid.querySelectorAll('.fade-in').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 100);
+    });
+  }, 200);
+}
+
+/* ─── Reviews ───────────────────────────────────── */
+function renderReviews(p) {
+  const sampleReviews = [
+    { name: 'Rina S.', city: 'Jakarta', rating: 5, text: `Produk bagus banget! Bahan premium, jahitan rapi. Pengiriman super cepat, hari ini pesan besok sudah sampai. Sesuai banget sama foto. Pasti beli lagi!`, variant: `Ukuran: M, Warna: Putih`, color: '#10B981' },
+    { name: 'Budi P.', city: 'Bandung', rating: 5, text: `Kualitas oke, harga worth it. Sudah beli 3 kali di sini, selalu puas. CS ramah dan responsif. Highly recommended!`, variant: `Ukuran: L, Warna: Hitam`, color: '#3B82F6' },
+    { name: 'Maya L.', city: 'Surabaya', rating: 4, text: `Bagus, sesuai ekspektasi. Warna sedikit berbeda dari foto tapi masih cantik. Overall satisfied dengan produknya!`, variant: `Ukuran: S, Warna: Navy Blue`, color: '#F59E0B' },
+  ];
+
+  const reviewList = document.getElementById('review-list');
+  reviewList.innerHTML = sampleReviews.map(r => `
+    <div class="review-card fade-in">
+      <div class="review-card-header">
+        <div class="reviewer-info">
+          <div class="reviewer-avatar" style="background: linear-gradient(135deg, ${r.color}, ${r.color}aa);">
+            ${r.name.charAt(0)}
+          </div>
+          <div>
+            <div class="reviewer-name">${r.name}</div>
+            <div class="reviewer-date">${r.city} · ${new Date(Date.now() - Math.random() * 30 * 86400000).toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'})}</div>
+          </div>
+        </div>
+        <div class="review-rating-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+      </div>
+      <p class="review-text">${r.text}</p>
+      <div class="review-variant">Varian: ${r.variant} · <span class="review-verified">✓ Pembelian Terverifikasi</span></div>
+    </div>
+  `).join('');
+
+  setTimeout(() => {
+    reviewList.querySelectorAll('.fade-in').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 100);
+    });
+  }, 300);
+}
+
+/* ─── Tab Switching ─────────────────────────────── */
+function switchTab(btn) {
+  document.querySelectorAll('.product-tab-link').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.product-tab-pane').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + btn.dataset.tab)?.classList.add('active');
+}
+
+/* ─── Size Guide Modal ───────────────────────────── */
+function openSizeGuide() {
+  document.getElementById('size-guide-modal')?.classList.add('open');
+  document.getElementById('size-guide-overlay')?.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSizeGuide() {
+  document.getElementById('size-guide-modal')?.classList.remove('open');
+  document.getElementById('size-guide-overlay')?.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+/* ─── Share ─────────────────────────────────────── */
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href)
+    .then(() => showToast('Link Disalin!', 'Link produk berhasil disalin.', 'success'))
+    .catch(() => showToast('Gagal', 'Tidak dapat menyalin link.', 'error'));
+}
+
+function shareWhatsApp() {
+  const text = `Lihat produk keren ini: ${currentProduct?.name} - ${window.location.href}`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+}
+</script>
+</body>
+</html>
